@@ -6,8 +6,8 @@ const salesAll = async () => {
   return { status: 200, message: sales };
 };
 
-const salesCreate = async (arrSale) => {
-  const productNotExist = arrSale.map(async (sale) => {
+const salesCreate = async (mSales) => {
+  const productNotExist = mSales.map(async (sale) => {
     const productExist = await productsModel.getProductsId(+sale.productId);
 
     if (!productExist) return false;
@@ -24,7 +24,7 @@ const salesCreate = async (arrSale) => {
     };
   }
 
-  const result = await salesModel.salesCreate(arrSale);
+  const result = await salesModel.salesCreate(mSales);
   return { status: 201, message: result };
 };
 
