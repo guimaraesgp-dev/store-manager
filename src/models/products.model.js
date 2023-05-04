@@ -20,10 +20,30 @@ const connection = require('../connection');
       [productName],
   );
     return { id: insertId, name: productName };
+  };
+
+const update = async (product, idProduct) => {
+  const [[result]] = await connection.execute(
+    'SELECT * FROM StoreManager.products WHERE id = (?);',
+    [idProduct],
+  );
+  if (result === undefined) {
+    return undefined;
+  }
+  await connection.execute(
+    `UPDATE StoreManager.products 
+    SET name = (?) WHERE id = (?);`,
+    [product, idProduct],
+  );
+  return {
+    id: idProduct,
+    name: product,
+  };
 };
 
 module.exports = {
   getAllProducts,
   getProductsId,
   createProducts,
+  update,
 };

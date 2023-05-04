@@ -11,7 +11,7 @@ const { productsmock } = require('./mocks/products.controller.mocks');
 
 describe('products Controller', () => {
   afterEach(() => sinon.restore());
-  it('Rertona todos os produtos', async () => {
+  it('Retorna todos os produtos', async () => {
     const req = {};
     const res = {};
 
