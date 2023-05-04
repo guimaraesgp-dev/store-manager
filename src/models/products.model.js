@@ -1,4 +1,4 @@
-const connection = require('./connection');
+const connection = require('../connection');
 
  const getAllProducts = async () => {
    const [products] = await connection.execute(
@@ -8,10 +8,10 @@ const connection = require('./connection');
 };
 
  const getProductsId = async (id) => {
-    const [[product]] = await connection.execute(
+    const [[productId]] = await connection.execute(
       'SELECT * FROM StoreManager.products WHERE id = ?;', [id],
     );
-    return product;
+   return productId;
 };
 
 module.exports = {
